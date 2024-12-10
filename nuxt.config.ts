@@ -12,23 +12,63 @@ export default defineNuxtConfig({
     '@nuxt/image',
     '@nuxtjs/i18n',
     '@nuxtjs/html-validator',
+    '@vite-pwa/nuxt',
   ],
+
+  pwa: {
+    manifest: {
+      name: 'Movi',
+      short_name: 'Movi',
+      description: 'Movi is movie industry',
+      lang: 'en-US',
+      theme_color: '#fff',
+      background_color: '#fff',
+      prefer_related_applications: true,
+      orientation: 'any',
+      display: 'standalone',
+      icons: [
+        {
+          purpose: 'maskable',
+          src: 'icon512_maskable.png',
+          sizes: '512x512',
+          type: 'image/png',
+        },
+        {
+          purpose: 'any',
+          src: 'icon512_rounded.png',
+          sizes: '512x512',
+          type: 'image/png',
+        },
+      ],
+    },
+    workbox: {
+      navigateFallback: '/',
+    },
+    devOptions: {
+      enabled: true,
+      type: 'module',
+    },
+  },
+
   experimental: {
-    inlineSSRStyles: false,
     viewTransition: true,
     renderJsonPayloads: true,
   },
+
   routeRules: {
     '/**': isDev ? {} : { cache: { swr: true, maxAge: 120, staleMaxAge: 60, headersOnly: true } },
   },
+
   runtimeConfig: {
     public: {
       apiBaseUrl,
     },
   },
+
   devtools: {
     enabled: true,
   },
+
   image: {
     provider: 'proxy',
     providers: {
@@ -40,11 +80,13 @@ export default defineNuxtConfig({
       },
     },
   },
+
   nitro: {
     routeRules: {
-      '/**': { isr: false },
+      '/**': { isr: false, swr: true },
     },
   },
+
   i18n: {
     detectBrowserLanguage: {
       useCookie: true,
@@ -112,17 +154,18 @@ export default defineNuxtConfig({
     langDir: 'internationalization',
     defaultLocale: 'en',
   },
+
   htmlValidator: {
     usePrettier: false,
     logLevel: 'verbose',
     failOnError: false,
     /** A list of routes to ignore (that is, not check validity for). */
-    ignore: [/\.(xml|rss|json)$/],
+    ignore: [/\.(xml|rss)$/],
     options: {
       extends: [
         'html-validate:document',
         'html-validate:recommended',
-        'html-validate:standard'
+        'html-validate:standard',
       ],
       rules: {
         'svg-focusable': 'off',
@@ -135,8 +178,10 @@ export default defineNuxtConfig({
         'attribute-boolean-style': 'off',
         'doctype-style': 'off',
         // Unreasonable rule
-        'no-inline-style': 'off'
-      }
-    }
+        'no-inline-style': 'off',
+      },
+    },
   },
+
+  compatibilityDate: '2024-12-10',
 })

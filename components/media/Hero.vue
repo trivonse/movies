@@ -20,15 +20,15 @@ const mounted = useMounted()
 </script>
 
 <template>
-  <div :key="item.id" relative class="aspect-ratio-3/2 lg:aspect-ratio-25/9" bg-black>
+  <div :key="item.id" relative class="aspect-ratio-1 lg:aspect-ratio-25/9" bg-black>
     <div
-      absolute top-0 right-0
+      absolute top-0 right-0 h-full
       lt-lg="left-0"
-      lg="bottom-0 left-1/3"
+      lg="bottom-0 left-0"
     >
       <NuxtImg
-        width="1220"
-        height="659"
+        width="100%"
+        height="100%"
         format="webp"
         :src="`/tmdb${props.item.backdrop_path}`"
         :alt="props.item.title || props.item.name"
@@ -40,7 +40,7 @@ const mounted = useMounted()
       flex="~ col" justify-center
       lt-lg="bg-gradient-to-t right-0 p10"
       lg="px25 w-2/3 bg-gradient-to-r"
-      from-black via-black to-transparent
+      from-black to-transparent
     >
       <Transition appear name="hero">
         <div v-show="mounted">
@@ -83,7 +83,7 @@ const mounted = useMounted()
         </div>
       </Transition>
     </div>
-    <div v-if="trailer" lg:hidden absolute left-0 top-0 right-0 h="2/3" items-center justify-center>
+    <div v-if="trailer" hidden absolute left-0 top-0 right-0 h="2/3" items-center justify-center>
       <button
         type="button"
         items-center p10 text-5xl op20 hover:op80 transition

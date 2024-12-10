@@ -26,6 +26,7 @@ useHead({
 </script>
 
 <template>
+  <NuxtPwaManifest />
   <NuxtLoadingIndicator />
   <div
     h-full w-full font-sans
