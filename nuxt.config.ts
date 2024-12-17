@@ -66,7 +66,11 @@ export default defineNuxtConfig({
   },
 
   devtools: {
-    enabled: true,
+    enabled: false,
+  },
+
+  devServer: {
+    port: 4554,
   },
 
   image: {
