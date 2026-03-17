@@ -7,11 +7,6 @@
       </div>
     </div>
     <div flex="~ row gap2" items-center>
-      <div op50 text-sm>
-        Made with Jamshid Toshov
-      </div>
-    </div>
-    <div flex="~ row gap2" items-center>
       <p text-true-gray:90 text-sm>
         Data provided by&nbsp;
         <a op100 target="_blank" href="https://www.themoviedb.org/" title="The Movie Database" rel="noopener" n-link-text>
